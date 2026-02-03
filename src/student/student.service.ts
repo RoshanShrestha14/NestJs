@@ -46,52 +46,46 @@ export class StudentService {
     };
   }
 
-// updateStudent(id: number, data: { name: string; age: number }) {
-//   const index = this.students.findIndex(
-//     student => student.id === id
-//   );
+  // updateStudent(id: number, data: { name: string; age: number }) {
+  //   const index = this.students.findIndex(
+  //     student => student.id === id
+  //   );
 
-//   if (index === -1) {
-//     throw new NotFoundException("No student found");
-//   }
+  //   if (index === -1) {
+  //     throw new NotFoundException("No student found");
+  //   }
 
-//   this.students[index] = {
-//     ...this.students[index],
-//     ...data,
-//   };
+  //   this.students[index] = {
+  //     ...this.students[index],
+  //     ...data,
+  //   };
 
-//   return {
-//     message: "updated",
-//     success: true,
-//     student: this.students[index],
-//   };
-// }
+  //   return {
+  //     message: "updated",
+  //     success: true,
+  //     student: this.students[index],
+  //   };
+  // }
 
-
-patchStudent(id:number,data:Partial<{name:string,age:number}>)
-{
-    const student= this.getStudentById(id);
-    Object.assign(student,data);
-     return {
+  patchStudent(id: number, data: Partial<{ name: string; age: number }>) {
+    const student = this.getStudentById(id);
+    Object.assign(student, data);
+    return {
       message: 'patched',
       success: true,
-      student: student
+      student: student,
     };
-}
+  }
 
-deleteStudent(id:number){
+  deleteStudent(id: number) {
+    const index = this.students.findIndex((s) => s.id === id);
+    if (index === -1) throw new NotFoundException('id not found');
 
-    const index =  this.students.findIndex((s)=>s.id=== id);
-    if(index===-1 )  throw new NotFoundException("id not found");
-
-const deleted  = this.students.splice(index,1)
-return {
+    const deleted = this.students.splice(index, 1);
+    return {
       message: 'deleted',
       success: true,
-      student: deleted
+      student: deleted,
     };
-
-
-
-}
+  }
 }
