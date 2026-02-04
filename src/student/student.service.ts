@@ -33,7 +33,7 @@ export class StudentService {
     const existingStudent = this.students.find((student) => student.id === id);
 
     if (!existingStudent) {
-      throw new NotFoundException('No student found');
+      throw new NotFoundException('No any student found');
     }
 
     existingStudent.name = data.name;
