@@ -7,8 +7,8 @@ export class AuthGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    const authHeader = request.header['authorization'];
+    const authHeader = request.headers['authorization'];
 
-    return authHeader.token === 'Bearer my-secret-token';
+    return authHeader === 'Bearer my-secret-token';
   }
 }
